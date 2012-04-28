@@ -52,7 +52,7 @@ For example (assuming we changed the library file name to `my_cool_thing_package
     		$footerBlocks = array(
 				array(
 					'btHandle' => 'content',
-					'data' => array('content' => '<p>&copy;2012 My Awesome Site</p>',
+					'data' => array('content' => '<p>&copy;2012 My Awesome Site</p>'),
 				),
 				array(
 					'btHandle' => 'handy_block',
