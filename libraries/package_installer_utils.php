@@ -13,7 +13,7 @@ class PackageInstallerUtils {
 	//When a block is uninstalled, C5 doesn't delete any of its tables (primary or otherwise), so do it manually during the package uninstall() method if desired.
 		if (!empty($tableNames)) {
 			$db = Loader::db();
-			$sql = 'DROP TABLE ' . implode(', ', $tableNames);
+			$sql = 'DROP TABLE IF EXISTS ' . implode(', ', $tableNames);
 			$db->Execute($sql);
 		}
 	}
