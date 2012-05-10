@@ -1,6 +1,6 @@
 <?php defined('C5_EXECUTE') or die(_("Access Denied."));
 
-/* Version 2012-04-28 */
+/* Version 2012-05-10 */
 
 class PackageInstallerUtils {
 	private $pkg;
@@ -293,10 +293,19 @@ class PackageInstallerUtils {
 		}
 	}
 	
+	public function deleteEmptyGlobalArea($globalAreaName) {
+		$stack = Stack::getByName($globalAreaName);
+		if (!is_null($stack) && count($stack->getBlocks(STACKS_AREA_NAME))) {
+			$this->deleteGlobalArea($globalAreaName);
+		}
+	}
+	
 	public function deleteGlobalArea($globalAreaName) {
 		//Note: just calling GlobalArea::deleteByName() doesn't work. Delete the stack instead.
 		$stack = Stack::getByName($globalAreaName);
-		$stack->delete();
+		if (!is_null($stack)) {
+			$stack->delete();
+		}
 	}
 	
 /*** UNTESTED, UNREFACTORED, LESSER-USED THINGS.... ***/
