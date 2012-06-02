@@ -1,6 +1,9 @@
 <?php defined('C5_EXECUTE') or die(_("Access Denied."));
 
-/* Version 2012-05-10 */
+/**
+ * https://github.com/jordanlev/c5_package_installer_utils
+ * Version 2012-06-01
+ */
 
 class PackageInstallerUtils {
 	private $pkg;
@@ -9,7 +12,7 @@ class PackageInstallerUtils {
 		$this->pkg = $pkg;
 	}
 	
-	public function deleteTables($tableNames = array()) {
+	public static function deleteTables($tableNames = array()) {
 	//When a block is uninstalled, C5 doesn't delete any of its tables (primary or otherwise), so do it manually during the package uninstall() method if desired.
 		if (!empty($tableNames)) {
 			$db = Loader::db();
