@@ -2,7 +2,7 @@
 
 /**
  * https://github.com/jordanlev/c5_package_installer_utils
- * Version 2012-06-01
+ * Version 2012-11-04
  */
 
 class PackageInstallerUtils {
@@ -91,6 +91,13 @@ class PackageInstallerUtils {
 		$ct->populateAvailableAttributeKeys();
 		if (!$ct->isAvailableCollectionTypeAttribute($ak->getAttributeKeyID())) {
 			$ct->assignCollectionAttribute($ak);
+		}
+	}
+	
+	public function addAttributeToSet(&$ak, $asHandle) {
+		$as = AttributeSet::getByHandle($asHandle);
+		if (!is_null($as)) {
+			$as->addKey($ak);
 		}
 	}
 	
@@ -394,5 +401,18 @@ class PackageInstallerUtils {
 		}
 	}
 	
-	
+	/* HANDY TECHNIQUE FOR ADDING AN EVENT HANDLER IN A PACKAGE CONTROLLER ITSELF (minimal code, requires no other files):
+	 *
+	 *   public function on_start() {
+	 *      if (!defined('ENABLE_APPLICATION_EVENTS')) { define('ENABLE_APPLICATION_EVENTS', true); } //<--REQUIRED IN 5.5+ (despite what c5 docs say!!)
+	 *      
+	 *   	$event = 'on_before_render';
+	 *   	Events::extend($event, __CLASS__, $event, __FILE__);
+	 *   }
+	 *   
+	 *   public function on_before_render(&$page) { //<--just an example of an event -- could be any event though (and then the function args would be different)
+	 *   	//do whatevs...
+     *   }
+     */
+
 }
