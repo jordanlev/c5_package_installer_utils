@@ -23,7 +23,7 @@ class PackageInstallerUtils {
 	
 	public function getOrInstallBlockType($btHandle) {
 		$bt = BlockType::getByHandle($btHandle);
-		if (is_null($bt)) {
+		if (empty($bt)) {
 			BlockType::installBlockTypeFromPackage($btHandle, $this->pkg);
 			$bt = BlockType::getByHandle($btHandle);
 		}
