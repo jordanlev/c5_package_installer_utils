@@ -2,7 +2,7 @@
 
 /**
  * https://github.com/jordanlev/c5_package_installer_utils
- * Version 2012-11-04
+ * Version 2013-03-23
  */
 
 class PackageInstallerUtils {
