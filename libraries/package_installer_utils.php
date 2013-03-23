@@ -62,7 +62,7 @@ class PackageInstallerUtils {
 		
 		
 		$ak = CollectionAttributeKey::getByHandle($akHandle);
-		if (is_null($ak)) {
+		if (!is_object($ak)) {
 			$at = AttributeType::getByHandle('select');
 			$ak = CollectionAttributeKey::add($at, $akSettings, $this->pkg);
 		}
@@ -373,7 +373,7 @@ class PackageInstallerUtils {
 		);
 		
 		$ak = CollectionAttributeKey::getByHandle($akHandle);
-		if (is_null($ak)) {
+		if (!is_object($ak)) {
 			$ak = CollectionAttributeKey::add(
 				$at,
 				$akSettings,
